@@ -1,0 +1,18 @@
+﻿@using DreamCar.Constants.Extensions
+@using DreamCar.Web.Controllers
+
+@model DreamCar.Models.Dto.Dealer.DealerListFilter
+
+<div class="row">
+    
+    <br/>
+
+    <form action="@(nameof(DealerController.SetFilter).RemoveControllerSuffix())" method="get" class="box">
+
+        <div class="">
+            <input name="@Html.NameFor(x => x.Name)" value="@Html.ValueFor(x => x.Name)" class="form-control inline-block" placeholder="type dealer name" pattern="\w{3,20}"/>
+            <input type="submit" value="Filter" class="btn btn-default inline-block"/>
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+    </form>
+</div>

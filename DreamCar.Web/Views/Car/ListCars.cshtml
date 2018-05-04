@@ -1,0 +1,101 @@
+﻿
+@using DreamCar.Constants.Extensions
+@using DreamCar.Web.Controllers
+@model DreamCar.Models.Dto.Car.CarWrapper
+
+@{
+    ViewBag.Title = "List Cars";
+}
+
+<!-- filter -->
+@Html.Partial("_CarListFilter", Model.Filter)
+
+<!-- paginator -->
+@Html.Partial("_ListPaginator", Model.Paginator)
+
+<div class="row">
+
+    <p>
+        @Html.ActionLink("Create New", nameof(CarController.Add).RemoveControllerSuffix())
+    </p>
+    <h2>List Cars</h2>
+</div>
+
+@if (Model.Cars.Any())
+{
+    <div class="row">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(x => x.Cars[0].Model)
+                </th>
+                
+                <th>
+                    @Html.DisplayNameFor(x => x.Cars[0].YearBuilt)
+                </th>
+                
+                <th>
+                    @Html.DisplayNameFor(x => x.Cars[0].HorsePower)
+                </th>
+                
+                <th>
+                    @Html.DisplayNameFor(x => x.Cars[0].DealerName)
+                </th>
+                
+                <th>
+                    @Html.DisplayNameFor(x => x.Cars[0].Description)
+                </th>
+            </tr>
+
+            @foreach (var car in Model.Cars)
+            {
+                <tr>
+                    <td>
+                        @car.Model
+                    </td>
+                    
+                    <td>
+                        @car.YearBuilt
+                    </td>
+                    
+                    <td>
+                        @car.HorsePower
+                    </td>
+                    
+                    <td>
+                        @car.DealerName
+                    </td>
+                    
+                    <td>
+                        @{
+                            var tokens = car.Description.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+                        }
+                        
+                        @foreach (var token in tokens)
+                        {
+                            if (!string.IsNullOrWhiteSpace(Model.Filter.Description) && token.Contains(Model.Filter.Description))
+                            {
+                                <span class="filter-match">@token</span>
+                            }
+                            else
+                            {
+                                @token
+                            }
+
+                            <text> </text>                            
+                        }
+                    </td>
+                    
+                </tr>
+            }
+
+        </table>
+    </div>
+}
+else
+{
+    <div class="row">
+        <p>There is no any Cars!</p>
+    </div>
+}
+

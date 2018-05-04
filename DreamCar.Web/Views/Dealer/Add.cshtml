@@ -1,0 +1,29 @@
+﻿@using DreamCar.Constants.Extensions
+@using DreamCar.Web.Controllers
+
+@model DreamCar.Models.Dto.Dealer.DealerDto
+
+@{
+    ViewBag.Title = "Add Dealer";
+}
+
+<div class="row">
+    
+    <div class="col-xs-8 col-sm-offset-2">
+        <h2>Add Dealer</h2>
+
+        @using (Html.BeginForm(nameof(DealerController.Add).RemoveControllerSuffix(), nameof(DealerController).RemoveControllerSuffix(), FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.LabelFor(x => x.Name)
+            @Html.TextBoxFor(x => x.Name, new {@class = "form-control"})
+            @Html.ValidationMessageFor(x => x.Name)
+
+            <br/>
+
+            <input type="submit" class="btn btn-default" value="Add"/>
+        }
+    </div>
+    
+</div>

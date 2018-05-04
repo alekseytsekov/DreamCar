@@ -1,0 +1,24 @@
+﻿@using DreamCar.Constants.Extensions
+@using DreamCar.Web.Controllers
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Dream Car", nameof(HomeController.Index).RemoveControllerSuffix(), nameof(HomeController).RemoveControllerSuffix(), new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Add Dealer", nameof(DealerController.Add).RemoveControllerSuffix(), nameof(DealerController).RemoveControllerSuffix())</li>
+                <li>@Html.ActionLink("List Dealers", nameof(DealerController.ListDealers).RemoveControllerSuffix(), nameof(DealerController).RemoveControllerSuffix())</li>
+                <li>@Html.ActionLink("Add Car", nameof(CarController.Add).RemoveControllerSuffix(), nameof(CarController).RemoveControllerSuffix())</li>
+                <li>@Html.ActionLink("List Cars", nameof(CarController.ListCars).RemoveControllerSuffix(), nameof(CarController).RemoveControllerSuffix())</li>
+            </ul>
+        </div>
+    </div>
+</div>

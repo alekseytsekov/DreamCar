@@ -1,0 +1,50 @@
+﻿@using DreamCar.Constants.Extensions
+@using DreamCar.Web.Controllers
+@model DreamCar.Models.Dto.Dealer.DealerWrapper
+
+@{
+    ViewBag.Title = "List Dealers";
+}
+
+<!-- filter -->
+@Html.Partial("_DealerListFilter", Model.Filter)
+
+<!-- paginator -->
+@Html.Partial("_ListPaginator", Model.Paginator)
+
+<div class="row">
+    
+    <p>
+        @Html.ActionLink("Create New", nameof(DealerController.Add).RemoveControllerSuffix())
+    </p>
+    <h2>List Dealers</h2>
+</div>
+
+@if (Model.Dealers.Any())
+{
+    <div class="row">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(x => x.Dealers[0].Name)
+                </th>
+            </tr>
+
+            @foreach (var dealer in Model.Dealers)
+            {
+                <tr>
+                    <td>
+                        @dealer.Name
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+}
+else
+{
+    <div class="row">
+        <p>There is no any Dealer!</p>
+    </div>
+}
